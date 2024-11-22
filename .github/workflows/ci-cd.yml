@@ -1,0 +1,35 @@
+name: CI/CD Pipeline for Sample App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r sample-app/requirements.txt
+
+    - name: Run tests (if any)
+      run: |
+        echo "No tests implemented yet"
+
+    - name: Build Docker Image
+      run: |
+        docker build -t sample-app ./sample-app
+    
+    - name: Push Docker Image (optional)
+      run: |
+        echo "Add steps for DockerHub/GitHub Container Registry if required"
